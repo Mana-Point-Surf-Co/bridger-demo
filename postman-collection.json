@@ -1,0 +1,341 @@
+{
+  "info": {
+    "name": "Job API",
+    "description": "API endpoints for Job management with GeoJSON conversion",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Convert Job",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"user123\",\n  \"geo\": {\n    \"type\": \"FeatureCollection\",\n    \"features\": [\n      {\n        \"type\": \"Feature\",\n        \"geometry\": {\n          \"type\": \"Point\",\n          \"coordinates\": [-122.4194, 37.7749]\n        },\n        \"properties\": {\n          \"name\": \"San Francisco\"\n        }\n      }\n    ]\n  }\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/job/convert",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "job", "convert"]
+        },
+        "description": "Create a new conversion job with GeoJSON data. Returns 202 ACCEPTED with jobId and geoRecordId."
+      },
+      "response": []
+    },
+    {
+      "name": "Get Job Status by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/job/:jobId",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "job", ":jobId"],
+          "variable": [
+            {
+              "key": "jobId",
+              "value": "550e8400-e29b-41d4-a716-446655440000",
+              "description": "Replace with actual job UUID"
+            }
+          ]
+        },
+        "description": "Get the status of a specific job by its ID."
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Jobs",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/job",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "job"]
+        },
+        "description": "Get all jobs without any filters."
+      },
+      "response": []
+    },
+    {
+      "name": "Get Jobs by Status - PENDING",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/job?status=PENDING",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "job"],
+          "query": [
+            {
+              "key": "status",
+              "value": "PENDING"
+            }
+          ]
+        },
+        "description": "Get all jobs with PENDING status."
+      },
+      "response": []
+    },
+    {
+      "name": "Get Jobs by Status - PROCESSING",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/job?status=PROCESSING",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "job"],
+          "query": [
+            {
+              "key": "status",
+              "value": "PROCESSING"
+            }
+          ]
+        },
+        "description": "Get all jobs with PROCESSING status."
+      },
+      "response": []
+    },
+    {
+      "name": "Get Jobs by Status - DONE",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/job?status=DONE",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "job"],
+          "query": [
+            {
+              "key": "status",
+              "value": "DONE"
+            }
+          ]
+        },
+        "description": "Get all jobs with DONE status."
+      },
+      "response": []
+    },
+    {
+      "name": "Get Jobs by Status - FAILED",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/job?status=FAILED",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "job"],
+          "query": [
+            {
+              "key": "status",
+              "value": "FAILED"
+            }
+          ]
+        },
+        "description": "Get all jobs with FAILED status."
+      },
+      "response": []
+    },
+    {
+      "name": "Get Jobs with Pagination - Page 0",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/job?page=0&pageSize=10",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "job"],
+          "query": [
+            {
+              "key": "page",
+              "value": "0"
+            },
+            {
+              "key": "pageSize",
+              "value": "10"
+            }
+          ]
+        },
+        "description": "Get first page of jobs with 10 items per page."
+      },
+      "response": []
+    },
+    {
+      "name": "Get Jobs with Pagination - Page 1",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/job?page=1&pageSize=20",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "job"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "pageSize",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Get second page of jobs with 20 items per page."
+      },
+      "response": []
+    },
+    {
+      "name": "Get Jobs - Filter and Paginate",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/job?status=PENDING&page=0&pageSize=5",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "job"],
+          "query": [
+            {
+              "key": "status",
+              "value": "PENDING"
+            },
+            {
+              "key": "page",
+              "value": "0"
+            },
+            {
+              "key": "pageSize",
+              "value": "5"
+            }
+          ]
+        },
+        "description": "Get PENDING jobs with pagination (first 5 items)."
+      },
+      "response": []
+    },
+    {
+      "name": "Get Job Files",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/job/:jobId/files",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "job", ":jobId", "files"],
+          "variable": [
+            {
+              "key": "jobId",
+              "value": "550e8400-e29b-41d4-a716-446655440000",
+              "description": "Replace with actual job UUID"
+            }
+          ]
+        },
+        "description": "Get GeoJSON and KML files for a job. KML is only returned if job status is DONE."
+      },
+      "response": []
+    },
+    {
+      "name": "Download KML File",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/job/:jobId/kml",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "job", ":jobId", "kml"],
+          "variable": [
+            {
+              "key": "jobId",
+              "value": "550e8400-e29b-41d4-a716-446655440000",
+              "description": "Replace with actual job UUID"
+            }
+          ]
+        },
+        "description": "Download KML file directly with proper content type (application/vnd.google-earth.kml+xml). Only works for jobs with DONE status. Can be imported directly into Google Earth."
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Job",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/job/:jobId",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "job", ":jobId"],
+          "variable": [
+            {
+              "key": "jobId",
+              "value": "550e8400-e29b-41d4-a716-446655440000",
+              "description": "Replace with actual job UUID"
+            }
+          ]
+        },
+        "description": "Delete a job and its associated GeoJSON record (cascade delete)."
+      },
+      "response": []
+    },
+    {
+      "name": "Test Invalid Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/job?status=INVALID_STATUS",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "job"],
+          "query": [
+            {
+              "key": "status",
+              "value": "INVALID_STATUS"
+            }
+          ]
+        },
+        "description": "Test error handling with invalid status. Should return 400 BAD_REQUEST."
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ]
+}

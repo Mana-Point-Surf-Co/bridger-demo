@@ -1,0 +1,79 @@
+### Convert Job - Create a new conversion job
+# Response: ConvertJobResponse { jobId, geoRecordId, status }
+POST http://localhost:8080/api/job/convert
+Content-Type: application/json
+
+{
+  "userId": "user123",
+  "geo": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-122.4194, 37.7749]
+        },
+        "properties": {
+          "name": "San Francisco"
+        }
+      }
+    ]
+  }
+}
+
+### Get Job Status by ID
+# Response: JobStatusResponse { jobId, geoRecordId, status }
+# Replace {jobId} with actual UUID from previous response
+GET http://localhost:8080/api/job/550e8400-e29b-41d4-a716-446655440000
+
+### Get All Jobs - No filter
+# Response: JobListResponse { jobs: [JobSummary], page, pageSize, count }
+GET http://localhost:8080/api/job
+
+### Get All Jobs - Filter by PENDING status
+# Response: JobListResponse { jobs: [JobSummary], page, pageSize, count }
+GET http://localhost:8080/api/job?status=PENDING
+
+### Get All Jobs - Filter by DONE status
+# Response: JobListResponse { jobs: [JobSummary], page, pageSize, count }
+GET http://localhost:8080/api/job?status=DONE
+
+### Get All Jobs - Filter by PROCESSING status
+# Response: JobListResponse { jobs: [JobSummary], page, pageSize, count }
+GET http://localhost:8080/api/job?status=PROCESSING
+
+### Get All Jobs - Filter by FAILED status
+# Response: JobListResponse { jobs: [JobSummary], page, pageSize, count }
+GET http://localhost:8080/api/job?status=FAILED
+
+### Get All Jobs - With pagination (page 0, 10 items)
+# Response: JobListResponse { jobs: [JobSummary], page, pageSize, count }
+GET http://localhost:8080/api/job?page=0&pageSize=10
+
+### Get All Jobs - With pagination (page 1, 20 items)
+# Response: JobListResponse { jobs: [JobSummary], page, pageSize, count }
+GET http://localhost:8080/api/job?page=1&pageSize=20
+
+### Get All Jobs - Filter by status with pagination
+# Response: JobListResponse { jobs: [JobSummary], page, pageSize, count }
+GET http://localhost:8080/api/job?status=PENDING&page=0&pageSize=5
+
+### Get Files for a Job (JSON with GeoJSON and KML)
+# Response: JobFilesResponse { jobId, geoRecordId, status, geoJson, kml? }
+# Replace {jobId} with actual UUID
+GET http://localhost:8080/api/job/550e8400-e29b-41d4-a716-446655440000/files
+
+### Download KML File (Raw KML XML for Google Earth)
+# Response: Raw KML XML (application/vnd.google-earth.kml+xml)
+# Replace {jobId} with actual UUID
+GET http://localhost:8080/api/job/550e8400-e29b-41d4-a716-446655440000/kml
+
+### Delete Job by ID
+# Response: DeleteJobResponse { message }
+# Replace {jobId} with actual UUID
+DELETE http://localhost:8080/api/job/550e8400-e29b-41d4-a716-446655440000
+
+### Test Invalid Status (should return 400 BAD_REQUEST)
+# Response: ErrorResponse { error }
+GET http://localhost:8080/api/job?status=INVALID_STATUS
