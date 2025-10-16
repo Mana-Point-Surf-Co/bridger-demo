@@ -1,4 +1,4 @@
-# Bridger Demo - GeoJSON to KML Converter
+# Bridger Demo - GeoJSON to KML Converter 
 
 A Spring Boot application that converts GeoJSON data to KML format asynchronously with real-time WebSocket notifications.
 
