@@ -388,15 +388,3 @@ Error responses include a message:
   "error": "Job ID: xxx not found"
 }
 ```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests
-5. Submit a pull request
-
-## License
-
-[Add your license here]
