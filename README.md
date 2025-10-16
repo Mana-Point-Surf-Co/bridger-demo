@@ -18,7 +18,7 @@ npm install
 node test.js
 
 # Or Import the postman-collection.json at the root of the project.
-# And in post create a WebSocket connection to ws://localhost:8080/ws?userId=user123
+# And in postman, create a new WebSocket connection to ws://localhost:8080/ws?userId=user123 to see the postman-collection status updates. 
 # Or use the api-tests.http file in IntelliJ
 
 ```
