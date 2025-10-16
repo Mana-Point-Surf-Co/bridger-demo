@@ -373,7 +373,6 @@ src/main/kotlin/com/bridger/job/
 └── websocket/       # WebSocket handlers
 
 src/main/resources/
-├── db/migration/    # Flyway migration scripts
 └── hawaii.json      # Sample GeoJSON data
 ```
 
