@@ -5,6 +5,10 @@ A Spring Boot application that converts GeoJSON data to KML format asynchronousl
 ## Quick Start (TL;DR)
 
 ```bash
+# Clone the repo
+git clone https://github.com/Mana-Point-Surf-Co/bridger-demo.git
+cd bridger-demo
+
 # Run with Docker
 docker-compose up --build
 
